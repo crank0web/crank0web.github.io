@@ -1,15 +1,43 @@
+new class{
+    siteurl="https://api.c-rank.online"
+    xscript=/<script>(.*?)<\/script>/g
+    #aside
+    #main
+    set aside(html){
+        var script=[]
+        this.#aside.innerHTML=html.replace(xscript,(_,src)=>script.push(src))
+        for(var src of script){
+            Function(src).call(this)
+        }
+    }
+    set main(html){
+        var script=[]
+        this.#main.innerHTML=html.replace(xscript,(_,src)=>script.push(src))
+        for(var src of script){
+            Function(src).call(this)
+        }
+    }
+    constructor(){
+        this.init()
+    }
+    async init(){
+        var {code}=await this.xget("/signon")
+        if(code==200){
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>C Rank</title>
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-	<script async type="module" src="main.mjs"></script>
-</head>
-<body>
-  <aside></aside>
-  <main></main>
-</body>
-</html>
+        }else{
+
+        }
+    }
+    async get(url){
+        var res=await fetch(url)
+        var text=await res.text()
+        try{
+            return JSON.parse(text)
+        }catch(e){}
+        return text
+    }
+    async xget(url){
+        var res=await fetch(this.siteurl+url)
+        return res.json()
+    }
+}
