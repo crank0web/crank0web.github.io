@@ -1,5 +1,5 @@
 <div class="signin">
-	<form>
+	<form v-on:submit="submit">
 		<p>{{message}}</p>
 	</form>
 </div>
@@ -10,6 +10,12 @@ createApp({
 	setup(){
 		return {
 			message
+		}
+	},
+	method:{
+		submit(e){
+			e.preventDefault()
+			message.value="test"
 		}
 	}
 }).mount(".signin")
