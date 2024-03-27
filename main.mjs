@@ -1,7 +1,7 @@
 import {env} from '/env.mjs'
 new class{
 	siteurl="https://z.c-rank.online"
-	name="cr"
+	site="cr"
 	#aside
 	#main
 	set aside(html){
@@ -53,7 +53,7 @@ new class{
 		var res=await fetch(this.siteurl+url,{
 			method:"POST",
 			body:JSON.stringify({
-				name:this.name,
+				site:this.site,
 				...obj
 			})
 		})
