@@ -1,7 +1,21 @@
 <div class="signin">
 	<form v-on:submit="submit">
+		<div class="title">
+			<i class="svg ic-logo"></i>
+			<h1>C Rank</h1>
+		</div>
+		<label>
+			<span class="txt-username"></span>
+			<input name="a" autofocus>
+			<i class="svg ic-person"></i>
+		</label>
+		<label>
+			<span class="txt-password"></span>
+			<input name="b" type="password">
+			<i class="svg ic-lock"></i>
+		</label>
 		<p>{{message}}</p>
-		<button type="submit">signin</button>
+		<button type="submit">로그인</button>
 	</form>
 </div>
 <script type="module">
@@ -18,13 +32,26 @@ createApp({
 		}
 	},
 	methods:{
-		submit(e){
+		async submit(e){
 			e.preventDefault()
-			message.value="test"
+
+			message.value="로그인 .."
+
+			var {code}=await main.xget("signin")
+			if(code==200){
+				message.value="로딩중 .."
+				await main.init()
+			}else{
+				message.value="아이디와 비밀번호를 다시 확인해주세요."
+			}
 		}
 	}
 }).mount(".signin")
 </script>
 <style>
-
+.signin{height:100%;background:radial-gradient(circle,#00efff 0%,#009fff 100%)}
+.signin form{
+	position:absolute;top:0;right:0;bottom:0;left:0;max-width:20em;max-height:fit-content;
+	margin:auto;padding:2em;color:#333
+}
 </style>
