@@ -31,12 +31,12 @@
 		</div>
 		<label>
 			<span class="txt-username"></span>
-			<input name="a" autofocus>
+			<input name="a" autofocus v-model="id">
 			<i class="svg ic-person"></i>
 		</label>
 		<label>
 			<span class="txt-password"></span>
-			<input name="b" type="password">
+			<input name="b" type="password" v-model="pw">
 			<i class="svg ic-lock"></i>
 		</label>
 		<div class="msg">{{message}}</div>
@@ -51,11 +51,15 @@ import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
 
 const main=env.get("main")
+const id=ref("")
+const pw=ref("")
 const message=ref("")
 
 createApp({
 	setup(){
 		return {
+			id,
+			pw,
 			message
 		}
 	},
@@ -65,7 +69,10 @@ createApp({
 
 			message.value="로그인 .."
 
-			var {code}=await main.xget("signin")
+			var {code}=await main.xpost("signin",{
+				id:id.value,
+				pw:pw.value
+			})
 			if(code==200){
 				message.value="로딩중 .."
 				await main.init()
