@@ -18,13 +18,12 @@ new class{
 	}
 	constructor(){
 		env.set("main",this)
-		this.init()
-	}
-	async init(){
 		var dom=document.body.querySelectorAll("aside,main")
 		this.#aside=dom[0]
 		this.#main=dom[1]
-
+		this.init()
+	}
+	async init(){
 		var {code}=await this.xget("/signon")
 		if(code==200){
 			this.aside=await this.xget("/aside")
@@ -44,6 +43,17 @@ new class{
 	}
 	async xget(url){
 		var res=await fetch(this.siteurl+url)
+		var text=await res.text()
+		try{
+			return JSON.parse(text)
+		}catch(e){}
+		return text
+	}
+	async xpost(url,obj){
+		var res=await fetch(this.siteurl+url+(url.indexOf("?")<0?"?name=":"&name=")+this.name,{
+			method:"POST",
+			body:JSON.stringify(obj)
+		})
 		var text=await res.text()
 		try{
 			return JSON.parse(text)
