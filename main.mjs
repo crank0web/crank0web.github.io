@@ -10,7 +10,7 @@ new class{
 	}
 	set main(html){
 		this.#main.innerHTML=html
-		for(var src of this.#aside.querySelectorAll("script")){
+		for(var src of this.#main.querySelectorAll("script")){
 			this.#main.appendChild(src)
 		}
 	}
