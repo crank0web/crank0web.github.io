@@ -5,14 +5,14 @@ new class{
 	#main
 	set aside(html){
 		var script=[]
-		this.#aside.innerHTML=html.replace(xscript,(_,src)=>script.push(src))
+		this.#aside.innerHTML=html.replace(this.xscript,(_,src)=>script.push(src))
 		for(var src of script){
 			Function(src).call(this)
 		}
 	}
 	set main(html){
 		var script=[]
-		this.#main.innerHTML=html.replace(xscript,(_,src)=>script.push(src))
+		this.#main.innerHTML=html.replace(this.xscript,(_,src)=>script.push(src))
 		for(var src of script){
 			Function(src).call(this)
 		}
