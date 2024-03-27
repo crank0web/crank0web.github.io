@@ -5,13 +5,13 @@ new class{
 	set aside(html){
 		this.#aside.innerHTML=html
 		for(var src of this.#aside.querySelectorAll("script")){
-			this.#aside.appendChild(src)
+			this.runScript(this.#aside,src)
 		}
 	}
 	set main(html){
 		this.#main.innerHTML=html
 		for(var src of this.#main.querySelectorAll("script")){
-			this.#main.appendChild(src)
+			this.runScript(this.#main,src)
 		}
 	}
 	constructor(){
@@ -46,5 +46,12 @@ new class{
 			return JSON.parse(text)
 		}catch(e){}
 		return text
+	}
+	runScript(node,script){
+		var src=document.createElement("script")
+		src.type="module"
+		src.text=script.text
+		node.appendChild(src)
+		script.remove()
 	}
 }
