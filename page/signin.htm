@@ -6,7 +6,11 @@
 </div>
 <script type="module">
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-const message=ref("1")
+import {env} from 'env.mjs'
+
+const main=env.get("main")
+const message=ref("")
+
 createApp({
 	setup(){
 		return {
