@@ -1,5 +1,5 @@
 new class{
-	siteurl="https://api.c-rank.online"
+	siteurl="https://z.c-rank.online"
 	xscript=/<script>(.*?)<\/script>/g
 	#aside
 	#main
