@@ -1,5 +1,7 @@
+import {env} from 'env.mjs'
 new class{
 	siteurl="https://z.c-rank.online"
+	name="cr"
 	#aside
 	#main
 	set aside(html){
