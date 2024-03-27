@@ -17,6 +17,7 @@ new class{
 		}
 	}
 	constructor(){
+		env.set("main",this)
 		this.init()
 	}
 	async init(){
