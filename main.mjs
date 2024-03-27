@@ -1,4 +1,4 @@
-import {env} from 'env.mjs'
+import {env} from '/env.mjs'
 new class{
 	siteurl="https://z.c-rank.online"
 	name="cr"
