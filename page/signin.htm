@@ -6,14 +6,14 @@
 </div>
 <script type="module">
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-const message=ref("")
+const message=ref("1")
 createApp({
 	setup(){
 		return {
 			message
 		}
 	},
-	method:{
+	methods:{
 		submit(e){
 			e.preventDefault()
 			message.value="test"
