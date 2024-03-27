@@ -21,6 +21,10 @@ new class{
 		this.init()
 	}
 	async init(){
+		var dom=document.body.querySelectorAll("aside,main")
+		this.#aside=dom[0]
+		this.#main=dom[1]
+
 		var {code}=await this.xget("/signon")
 		if(code==200){
 			this.aside=await this.xget("/aside")
