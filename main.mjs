@@ -50,9 +50,12 @@ new class{
 		return text
 	}
 	async xpost(url,obj){
-		var res=await fetch(this.siteurl+url+(url.indexOf("?")<0?"?name=":"&name=")+this.name,{
+		var res=await fetch(this.siteurl+url,{
 			method:"POST",
-			body:JSON.stringify(obj)
+			body:JSON.stringify({
+				name:this.name,
+				...obj
+			})
 		})
 		var text=await res.text()
 		try{
