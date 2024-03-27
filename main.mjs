@@ -42,7 +42,9 @@ new class{
 		return text
 	}
 	async xget(url){
-		var res=await fetch(this.siteurl+url)
+		var res=await fetch(this.siteurl+url,{
+			credentials: "include"
+		})
 		var text=await res.text()
 		try{
 			return JSON.parse(text)
@@ -51,6 +53,7 @@ new class{
 	}
 	async xpost(url,obj){
 		var res=await fetch(this.siteurl+url,{
+			credentials: "include",
 			method:"POST",
 			body:JSON.stringify({
 				site:this.site,
