@@ -1,20 +1,17 @@
 new class{
 	siteurl="https://z.c-rank.online"
-	xscript=/<script>(.*?)<\/script>/g
 	#aside
 	#main
 	set aside(html){
-		var script=[]
-		this.#aside.innerHTML=html.replace(this.xscript,(_,src)=>script.push(src))
-		for(var src of script){
-			Function(src).call(this)
+		this.#aside.innerHTML=html
+		for(var src of this.#aside.querySelectorAll("script")){
+			this.#aside.appendChild(src)
 		}
 	}
 	set main(html){
-		var script=[]
-		this.#main.innerHTML=html.replace(this.xscript,(_,src)=>script.push(src))
-		for(var src of script){
-			Function(src).call(this)
+		this.#main.innerHTML=html
+		for(var src of this.#aside.querySelectorAll("script")){
+			this.#main.appendChild(src)
 		}
 	}
 	constructor(){
