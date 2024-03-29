@@ -10,19 +10,19 @@ new class{
 
 	}
 	constructor(){
-		var dom=document.body.querySelectorAll("*")
-
 		local.app=this
 		createApp({
 			methods:this.methods,
 			setup:e=>this.setup()
 		}).mount(".app")
+	}
+	setup(){
+		var dom=document.body.querySelectorAll("*")
 
 		this.#aside=dom[0]
 		this.#main=dom[1]
 		this.init()
-	}
-	setup(){
+
 		return{
 		}
 	}
