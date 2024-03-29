@@ -1,10 +1,10 @@
-import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import {createApp,ref} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {local,signal} from '/env.mjs'
 
 new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
-	aside=ref(null)
+	menu=ref([])
 	main=ref(null)
 	methods={
 
@@ -19,17 +19,17 @@ new class{
 	}
 	setup(){
 		return{
-			aside:this.aside,
+			menu:this.menu,
 			main:this.main
 		}
 	}
 	async mounted(){
 		var {code}=await this.xget("/signon")
 		if(code==200){
-			this.aside=await this.xget("/aside")
+			this.menu.value=await this.xget("/aside")
 			await this.load("home","/page/home.htm")
 		}else{
-			this.aside=[]
+			this.menu.value=[]
 			await this.load("signin","/page/signin.htm")
 		}
 	}
