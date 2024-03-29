@@ -12,7 +12,7 @@ new class{
 	constructor(){
 		createApp({
 			methods:this.methods,
-			setup:this.setup
+			setup:e=>this.setup()
 		}).mount(".app")
 
 		this.main.value={
