@@ -47,15 +47,14 @@
 	</form>
 </div>
 <script type="module">
-import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-import {env} from '/env.mjs'
+import {local,signal} from '/env.mjs'
 
 const main=env.get("main")
 const id=ref("")
 const pw=ref("")
 const message=ref("")
 
-createApp({
+signal.get("signin")({
 	setup(){
 		return {
 			id,
@@ -84,5 +83,5 @@ createApp({
 
 		}
 	}
-}).mount(".signin")
+})
 </script>
