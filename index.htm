@@ -8,7 +8,9 @@
 	<link rel="stylesheet" href="/main.css">
 </head>
 <body class="app">
-	<aside ref="menu"></aside>
+	<aside>
+		<button v-for="item in menu" @click="move(item.id)">{{item.text}}</button>
+	</aside>
 	<main ref="main"></main>
 </body>
 </html>
