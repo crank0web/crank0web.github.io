@@ -75,7 +75,7 @@ signal.get("signin")({
 			})
 			if(code==200){
 				message.value="로딩중 .."
-				await app.init()
+				await app.mounted()
 			}else{
 				message.value="아이디와 비밀번호를 다시 확인해주세요."
 			}
