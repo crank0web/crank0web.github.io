@@ -1,24 +1,14 @@
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
+import signin from '/page/signin.htm'
+
 new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
-	#aside
-	#main
+	main=ref(null)
+	aside=ref(null)
 	methods={
 
-	}
-	set aside(html){
-		this.#aside.innerHTML=html
-		for(var src of this.#aside.querySelectorAll("script")){
-			this.runScript(this.#aside,src)
-		}
-	}
-	set main(html){
-		this.#main.innerHTML=html
-		for(var src of this.#main.querySelectorAll("script")){
-			this.runScript(this.#main,src)
-		}
 	}
 	constructor(){
 		createApp({
@@ -34,6 +24,8 @@ new class{
 	}
 	setup(){
 		return{
+			main:this.main,
+			aside:this.aside
 		}
 	}
 	async init(){
