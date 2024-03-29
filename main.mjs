@@ -7,7 +7,7 @@ new class{
 	main=ref({
 		template:
 `<script setup>
-const model = defineModel()
+const model = ref(0)
 
 function update() {
   model.value++
