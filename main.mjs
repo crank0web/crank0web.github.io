@@ -90,4 +90,4 @@ createApp({
 		return{
 		}
 	}
-}).mount("body")
+}).mount(".app")
