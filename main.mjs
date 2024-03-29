@@ -18,8 +18,8 @@ new class{
 			setup:e=>this.setup()
 		}).mount(".app")
 
-		this.#main=dom[0]
-		this.#aside=dom[1]
+		this.#aside=dom[0]
+		this.#main=dom[1]
 		this.init()
 	}
 	setup(){
@@ -30,10 +30,10 @@ new class{
 		var {code}=await this.xget("/signon")
 		if(code==200){
 			this.aside=await this.xget("/aside")
-			this.main=await this.get("home","/page/home.htm")
+			await this.load("home","/page/home.htm")
 		}else{
-			this.aside=""
-			this.main=await this.load("signin","/page/signin.htm")
+			this.aside=[]
+			await this.load("signin","/page/signin.htm")
 		}
 	}
 	load(name,url){
