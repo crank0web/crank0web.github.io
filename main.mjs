@@ -1,6 +1,6 @@
-import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { Vue, createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
-createApp(new class{
+createApp(new class extends Vue{
 	siteurl="https://z.c-rank.online"
 	site="cr"
 	#aside
