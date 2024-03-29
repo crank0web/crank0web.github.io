@@ -16,10 +16,9 @@ new class{
 			setup:this.setup
 		}).mount(".app")
 
+		this.main.value=signin
+
 		env.set("main",this)
-		var dom=document.body.querySelectorAll("aside,main")
-		this.#aside=dom[0]
-		this.#main=dom[1]
 		//this.init()
 	}
 	setup(){
