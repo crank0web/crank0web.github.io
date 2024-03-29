@@ -1,1 +1,1 @@
-export var env=new Map()
+export var local={}
