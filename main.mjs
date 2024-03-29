@@ -1,6 +1,6 @@
-import { Vue, createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
-createApp(new class extends Vue{
+new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
 	#aside
@@ -80,5 +80,14 @@ createApp(new class extends Vue{
 		src.text=script.text
 		node.appendChild(src)
 		script.remove()
+	}
+}
+createApp({
+	methods:{
+
+	},
+	setup(){
+		return{
+		}
 	}
 }).mount("body")
