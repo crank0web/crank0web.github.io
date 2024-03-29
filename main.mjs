@@ -1,49 +1,60 @@
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-import {env} from '/env.mjs'
+import {local,signal} from '/env.mjs'
 
 new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
-	main=ref({
-		template:
-`	<h1>signin {{test}}</h1>`,
-		setup(){
-			return {
-				test:1234
-			}
-		},
-		mounted:e=>{
-
-		}
-	})
-	aside=ref(null)
+	#main
+	#aside
 	methods={
 
 	}
 	constructor(){
+		var dom=document.body.querySelectorAll("*")
+
+		local.app=this
 		createApp({
 			methods:this.methods,
 			setup:e=>this.setup()
 		}).mount(".app")
 
-		env.set("main",this)
-		//this.init()
+		this.#main=dom[0]
+		this.#aside=dom[1]
+		this.init()
 	}
 	setup(){
 		return{
-			main:this.main,
-			aside:this.aside
 		}
 	}
 	async init(){
 		var {code}=await this.xget("/signon")
 		if(code==200){
 			this.aside=await this.xget("/aside")
-			this.main=await this.get("/page/home.htm")
+			this.main=await this.get("home","/page/home.htm")
 		}else{
 			this.aside=""
-			this.main=await this.get("/page/signin.htm")
+			this.main=await this.load("signin","/page/signin.htm")
 		}
+	}
+	async load(name,url){
+		var body=await new Promise((resolve,reject)=>{
+			var x=new XMLHttpRequest()
+			x.responseType="document"
+			x.open("GET",url,true)
+			x.onload=e=>resolve(x.response)
+			x.onerror=reject
+			x.send()
+		})
+		signal.set(name,e=>{
+			var el=body.querySelector("div")
+			var app=createApp(e)
+			app.mount(el)
+			this.#main.appendChild(el)
+			signal.delete(name)
+		})
+		this.#main.appendChild(body.querySelector("style"))
+		this.#main.appendChild(body.querySelector("script"))
+		return app
 	}
 	async get(url){
 		var res=await fetch(url)
