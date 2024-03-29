@@ -7,7 +7,7 @@ new class{
 	main=ref({
 		template:
 `	<h1>signin {{test}}</h1>`,
-		data(){
+		setup(){
 			return {
 				test:1234
 			}
