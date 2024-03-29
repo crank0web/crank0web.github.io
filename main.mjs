@@ -1,4 +1,5 @@
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import signin from '/page/signin.htm'
 import {env} from '/env.mjs'
 
 new class{
@@ -15,12 +16,7 @@ new class{
 			setup:e=>this.setup()
 		}).mount(".app")
 
-		this.main.value={
-			template:
-`<template>
-	<h1>signin</h1>
-</template> `
-		}
+		this.main.value=signin
 
 		env.set("main",this)
 		//this.init()
