@@ -14,7 +14,7 @@ new class{
 		createApp({
 			methods:this.methods,
 			setup:e=>this.setup(),
-			onMounted:e=>this.onMounted()
+			mounted:e=>this.mounted()
 		}).mount(".app")
 	}
 	setup(){
@@ -23,10 +23,7 @@ new class{
 			main:this.main
 		}
 	}
-	onMounted(){
-		this.init()
-	}
-	async init(){
+	async mounted(){
 		var {code}=await this.xget("/signon")
 		if(code==200){
 			this.aside=await this.xget("/aside")
