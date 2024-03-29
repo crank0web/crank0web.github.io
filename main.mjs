@@ -1,9 +1,13 @@
+import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
-new class{
+createApp(new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
 	#aside
 	#main
+	methods={
+
+	}
 	set aside(html){
 		this.#aside.innerHTML=html
 		for(var src of this.#aside.querySelectorAll("script")){
@@ -21,7 +25,11 @@ new class{
 		var dom=document.body.querySelectorAll("aside,main")
 		this.#aside=dom[0]
 		this.#main=dom[1]
-		this.init()
+		//this.init()
+	}
+	setup(){
+		return{
+		}
 	}
 	async init(){
 		var {code}=await this.xget("/signon")
@@ -73,4 +81,4 @@ new class{
 		node.appendChild(src)
 		script.remove()
 	}
-}
+}).mount("body")
