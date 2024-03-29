@@ -6,8 +6,15 @@ new class{
 	site="cr"
 	main=ref({
 		template:
-`<template>
-<h1>signin</h1>
+`<script setup>
+const model = defineModel()
+
+function update() {
+  model.value++
+}
+</script>
+<template>
+	<h1>signin {{model}}</h1>
 </template>`
 	})
 	aside=ref(null)
