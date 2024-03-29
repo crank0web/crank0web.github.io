@@ -15,7 +15,10 @@ function update() {
 </script>
 <template>
 	<h1>signin {{model}}</h1>
-</template>`
+</template>`,
+		mounted:e=>{
+
+		}
 	})
 	aside=ref(null)
 	methods={
