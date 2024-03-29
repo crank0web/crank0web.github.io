@@ -4,8 +4,8 @@ import {local,signal} from '/env.mjs'
 new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
-	#main
-	#aside
+	aside=ref(null)
+	main=ref(null)
 	methods={
 
 	}
@@ -13,18 +13,18 @@ new class{
 		local.app=this
 		createApp({
 			methods:this.methods,
-			setup:e=>this.setup()
+			setup:e=>this.setup(),
+			onMounted:e=>this.onMounted()
 		}).mount(".app")
 	}
 	setup(){
-		var dom=document.body.querySelectorAll("*")
-
-		this.#aside=dom[0]
-		this.#main=dom[1]
-		this.init()
-
 		return{
+			aside:this.aside,
+			main:this.main
 		}
+	}
+	onMounted(){
+		this.init()
 	}
 	async init(){
 		var {code}=await this.xget("/signon")
@@ -51,12 +51,12 @@ new class{
 				var el=body.querySelector("div")
 				var app=createApp(e)
 				app.mount(el)
-				this.#main.appendChild(el)
+				this.main.value.appendChild(el)
 				signal.delete(name)
 				resolve(app)
 			})
-			this.#main.appendChild(body.querySelector("style"))
-			this.#main.appendChild(body.querySelector("script"))
+			this.main.value.appendChild(body.querySelector("style"))
+			this.main.value.appendChild(body.querySelector("script"))
 		})
 	}
 	async get(url){
