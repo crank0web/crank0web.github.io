@@ -16,7 +16,12 @@ new class{
 			setup:this.setup
 		}).mount(".app")
 
-		this.main.value=signin
+		this.main.value={
+			template:
+`<template>
+	<h1>signin</h1>
+</template> `
+		}
 
 		env.set("main",this)
 		//this.init()
