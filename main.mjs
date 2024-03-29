@@ -36,8 +36,8 @@ new class{
 			this.main=await this.load("signin","/page/signin.htm")
 		}
 	}
-	async load(name,url){
-		var body=await new Promise((resolve,reject)=>{
+	load(name,url){
+		var task=new Promise((resolve,reject)=>{
 			var x=new XMLHttpRequest()
 			x.responseType="document"
 			x.open("GET",url,true)
@@ -45,16 +45,19 @@ new class{
 			x.onerror=reject
 			x.send()
 		})
-		signal.set(name,e=>{
-			var el=body.querySelector("div")
-			var app=createApp(e)
-			app.mount(el)
-			this.#main.appendChild(el)
-			signal.delete(name)
+		return new Promise(async(resolve,reject)=>{
+			var body=await task
+			signal.set(name,e=>{
+				var el=body.querySelector("div")
+				var app=createApp(e)
+				app.mount(el)
+				this.#main.appendChild(el)
+				signal.delete(name)
+				resolve(app)
+			})
+			this.#main.appendChild(body.querySelector("style"))
+			this.#main.appendChild(body.querySelector("script"))
 		})
-		this.#main.appendChild(body.querySelector("style"))
-		this.#main.appendChild(body.querySelector("script"))
-		return app
 	}
 	async get(url){
 		var res=await fetch(url)
