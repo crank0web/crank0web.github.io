@@ -1,6 +1,5 @@
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
-import signin from '/page/signin.vue'
 
 new class{
 	siteurl="https://z.c-rank.online"
