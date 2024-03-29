@@ -13,9 +13,7 @@ function update() {
   model.value++
 }
 </script>
-<template>
-	<h1>signin {{model}}</h1>
-</template>`,
+	<h1>signin {{model}}</h1>`,
 		mounted:e=>{
 
 		}
