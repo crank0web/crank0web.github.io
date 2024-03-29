@@ -6,14 +6,12 @@ new class{
 	site="cr"
 	main=ref({
 		template:
-`<script setup>
-const model = ref(0)
-
-function update() {
-  model.value++
-}
-</script>
-	<h1>signin {{model}}</h1>`,
+`	<h1>signin {{test}}</h1>`,
+		data(){
+			return {
+				test:1234
+			}
+		},
 		mounted:e=>{
 
 		}
