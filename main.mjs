@@ -1,6 +1,6 @@
 import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import {env} from '/env.mjs'
-createApp(new class{
+new class{
 	siteurl="https://z.c-rank.online"
 	site="cr"
 	#aside
@@ -21,6 +21,11 @@ createApp(new class{
 		}
 	}
 	constructor(){
+		createApp({
+			methods:this.methods,
+			setup:this.setup
+		}).mount(".app")
+
 		env.set("main",this)
 		var dom=document.body.querySelectorAll("aside,main")
 		this.#aside=dom[0]
@@ -81,4 +86,4 @@ createApp(new class{
 		node.appendChild(src)
 		script.remove()
 	}
-}).mount(".app")
+}
