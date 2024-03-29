@@ -44,6 +44,7 @@ new class{
 		})
 		return new Promise(async(resolve,reject)=>{
 			var body=await task
+			var src=document.createElement("script")
 			signal.set(name,e=>{
 				var el=body.querySelector("div")
 				var app=createApp(e)
@@ -53,7 +54,9 @@ new class{
 				resolve(app)
 			})
 			this.main.value.appendChild(body.querySelector("style"))
-			this.main.value.appendChild(body.querySelector("script"))
+			src.type="module"
+			src.text=body.querySelector("script").text
+			this.main.value.appendChild(src)
 		})
 	}
 	async get(url){
