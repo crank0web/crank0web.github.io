@@ -1,5 +1,4 @@
-import {createApp,ref} from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-import {local,signal} from '/env.mjs'
+import {local,signal,createApp,ref} from '/env.mjs'
 
 new class{
 	siteurl="https://z.c-rank.online"
